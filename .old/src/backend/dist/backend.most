@@ -1,0 +1,104 @@
+// Version: 1.0.0
+type ActionFrequency__95273877 =
+  {bet : Float; call : Float; check : Float; fold : Float; raise : Float};
+type Analysis__165752274 =
+  {
+    biggestMistakes : [Text];
+    foldToCbet : Float;
+    pfr : Float;
+    threeBetPct : Float;
+    vpip : Float
+  };
+type Card__219887410 = {rank : Text; suit : Text};
+type Data__791452850<K, V> =
+  {var count : Nat__490723111; kvs : [var ?(K, V)]};
+type EvData__590248995 = {action : Text; expectedValue : Float};
+type HandHistory__945413955 =
+  {
+    analysis : Analysis__165752274;
+    hands : [ParsedHand__519634937];
+    id : Text;
+    userId : UserId__158757552
+  };
+type Internal__8484328<K, V> =
+  {children : [var ?Node__46230540<K, V>]; data : Data__791452850<K, V>};
+type Leaf__809889148<K, V> = {data : Data__791452850<K, V>};
+type List__415060402<T> = List__790383201<T>;
+type List__790383201<T> =
+  {
+    var blockIndex : Nat__490723111;
+    var blocks : [var [var ?T]];
+    var elementIndex : Nat__490723111
+  };
+type Nat__490723111 = Nat__920180692;
+type Nat__920180692 = Nat;
+type Node__46230540<K, V> =
+  {#internal : Internal__8484328<K, V>; #leaf : Leaf__809889148<K, V>};
+type ParsedHand__519634937 =
+  {
+    actions : [Text];
+    date : Text;
+    handNumber : Text;
+    result : Float;
+    street : Text
+  };
+type RangeMatrix__1069140123 = [ActionFrequency__95273877];
+type Settings__77806800 =
+  {
+    var animationSpeed : Nat;
+    var evDetailLevel : Text;
+    var evDisplay : Bool;
+    var language : Text;
+    var showHints : Bool;
+    var soundEffects : Bool
+  };
+type SolvedSpot__382358763 =
+  {
+    board : [Card__219887410];
+    description : Text;
+    evData : EvData__590248995;
+    filters : SpotFilters__462975963;
+    id : Text;
+    positions : [Text];
+    ranges : RangeMatrix__1069140123;
+    street : Text
+  };
+type SpotFilters__462975963 =
+  {
+    betSizing : Text;
+    boardTexture : Text;
+    position : Text;
+    stackSize : Text;
+    street : Text
+  };
+type Stats__802203766 =
+  {var accuracy : Float; var evSaved : Float; var sessionsPlayed : Nat};
+type Timestamp__301639476 = Int;
+type UserId__158757552 = Principal;
+type UserProfile__1009003526 =
+  {
+    createdAt : Timestamp__301639476;
+    id : UserId__158757552;
+    settings : Settings__77806800;
+    stats : Stats__802203766
+  };
+actor {
+  stable histories :
+    {
+      var root :
+        Node__46230540<UserId__158757552,
+                        List__415060402<HandHistory__945413955>>;
+      var size : Nat__490723111
+    };
+  stable historyState : {var nextHistoryId : Nat};
+  stable profiles :
+    {
+      var root : Node__46230540<UserId__158757552, UserProfile__1009003526>;
+      var size : Nat__490723111
+    };
+  stable spots :
+    {
+      var root : Node__46230540<Text, SolvedSpot__382358763>;
+      var size : Nat__490723111
+    }
+};

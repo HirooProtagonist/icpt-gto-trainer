@@ -1,0 +1,156 @@
+@font-face {
+  font-family: "GeneralSans";
+  src: url("/assets/fonts/GeneralSans.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "GeistMono";
+  src: url("/assets/fonts/GeistMono.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-display: GeneralSans, sans-serif;
+    --font-body: GeneralSans, sans-serif;
+    --font-mono: GeistMono, monospace;
+    --radius: 0.625rem;
+
+    --background: 0.1 0 0;
+    --foreground: 0.92 0 0;
+    --card: 0.15 0.02 280;
+    --card-foreground: 0.92 0 0;
+    --popover: 0.12 0.01 280;
+    --popover-foreground: 0.92 0 0;
+
+    --primary: 0.55 0.23 92;
+    --primary-foreground: 0.1 0 0;
+
+    --secondary: 0.18 0.02 280;
+    --secondary-foreground: 0.85 0 0;
+    --muted: 0.2 0.01 0;
+    --muted-foreground: 0.6 0 0;
+
+    --accent: 0.62 0.18 142;
+    --accent-foreground: 0.1 0 0;
+
+    --destructive: 0.55 0.28 30;
+    --destructive-foreground: 0.95 0 0;
+
+    --border: 0.22 0.02 280;
+    --input: 0.18 0.02 280;
+    --ring: 0.62 0.18 142;
+
+    --chart-1: 0.62 0.22 142;
+    --chart-2: 0.55 0.24 245;
+    --chart-3: 0.6 0.25 30;
+    --chart-4: 0.58 0.18 60;
+    --chart-5: 0.65 0.2 70;
+
+    --sidebar: 0.12 0.01 280;
+    --sidebar-foreground: 0.92 0 0;
+    --sidebar-primary: 0.62 0.18 142;
+    --sidebar-primary-foreground: 0.1 0 0;
+    --sidebar-accent: 0.2 0.02 280;
+    --sidebar-accent-foreground: 0.82 0 0;
+    --sidebar-border: 0.22 0.02 280;
+    --sidebar-ring: 0.62 0.18 142;
+  }
+
+  .dark {
+    --background: 0.1 0 0;
+    --foreground: 0.92 0 0;
+    --card: 0.15 0.02 280;
+    --card-foreground: 0.92 0 0;
+    --popover: 0.12 0.01 280;
+    --popover-foreground: 0.92 0 0;
+
+    --primary: 0.6 0.22 142;
+    --primary-foreground: 0.1 0 0;
+
+    --secondary: 0.18 0.02 280;
+    --secondary-foreground: 0.85 0 0;
+    --muted: 0.2 0.01 0;
+    --muted-foreground: 0.6 0 0;
+
+    --accent: 0.6 0.22 142;
+    --accent-foreground: 0.1 0 0;
+
+    --destructive: 0.6 0.28 25;
+    --destructive-foreground: 0.95 0 0;
+
+    --border: 0.22 0.02 280;
+    --input: 0.18 0.02 280;
+    --ring: 0.6 0.22 142;
+
+    --chart-1: 0.62 0.22 142;
+    --chart-2: 0.55 0.24 245;
+    --chart-3: 0.6 0.25 30;
+    --chart-4: 0.58 0.18 60;
+    --chart-5: 0.65 0.2 70;
+
+    --sidebar: 0.12 0.01 280;
+    --sidebar-foreground: 0.92 0 0;
+    --sidebar-primary: 0.62 0.18 142;
+    --sidebar-primary-foreground: 0.1 0 0;
+    --sidebar-accent: 0.2 0.02 280;
+    --sidebar-accent-foreground: 0.82 0 0;
+    --sidebar-border: 0.22 0.02 280;
+    --sidebar-ring: 0.62 0.18 142;
+  }
+
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+}
+
+@layer utilities {
+  .transition-smooth {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .btn-action-fold {
+    @apply bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-md transition-smooth;
+  }
+  .btn-action-check {
+    @apply bg-[#4b5563] hover:bg-[#374151] text-white font-semibold py-2 px-4 rounded-md transition-smooth;
+  }
+  .btn-action-call {
+    @apply bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md transition-smooth;
+  }
+  .btn-action-raise {
+    @apply bg-amber-600 hover:bg-amber-700 text-white font-semibold py-2 px-4 rounded-md transition-smooth;
+  }
+  .btn-action-allin {
+    @apply bg-gradient-to-r from-yellow-500 to-red-600 hover:from-yellow-600 hover:to-red-700 text-white font-semibold py-2 px-4 rounded-md transition-smooth;
+  }
+  .range-matrix-hot {
+    @apply bg-emerald-500 text-white;
+  }
+  .range-matrix-call {
+    @apply bg-blue-500 text-white;
+  }
+  .range-matrix-fold {
+    @apply bg-red-500 text-white;
+  }
+  .range-matrix-mixed {
+    @apply bg-[#6b7280] text-white;
+  }
+  .card-hover {
+    @apply transition-smooth hover:shadow-lg hover:scale-105;
+  }
+  .deal-animation {
+    @apply animate-deal-card;
+  }
+}

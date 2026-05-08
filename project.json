@@ -1,0 +1,25 @@
+{
+  "overview": "A full-stack GTO poker training platform on the Internet Computer — an analog of GTO Wizard. Train against pre-solved spots, explore the solved library with range matrix heatmaps, use the spot solver, and review your hand history — all with data stored on-chain using Internet Identity authentication.",
+  "features": [
+    "Internet Identity login with guest mode",
+    "Library of 15+ pre-solved spots with 13x13 range matrix heatmaps",
+    "Trainer module with instant GTO feedback and EV indicators",
+    "Spot Solver with 4-color board card picker",
+    "Hand History Analyzer with sample data",
+    "Dashboard with user stats and progress charts",
+    "Settings with Russian/English language toggle",
+    "Dark poker theme with 4-color deck and animated table"
+  ],
+  "category": "games-entertainment",
+  "tags": [
+    "poker",
+    "gto",
+    "trainer",
+    "internet-computer",
+    "icp",
+    "strategy",
+    "range-matrix",
+    "solvers"
+  ],
+  "last_updated": "2026-05-08T12:28:08.464Z"
+}

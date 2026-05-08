@@ -1,0 +1,105 @@
+type UserProfileSettings = 
+ record {
+   animationSpeed: nat;
+   evDetailLevel: text;
+   evDisplay: bool;
+   language: text;
+   showHints: bool;
+   soundEffects: bool;
+ };
+type UserProfilePublic = 
+ record {
+   createdAt: Timestamp;
+   id: UserId;
+   settings: SettingsPublic;
+   stats: StatsPublic;
+ };
+type UserId = principal;
+type Timestamp = int;
+type StatsPublic = 
+ record {
+   accuracy: float64;
+   evSaved: float64;
+   sessionsPlayed: nat;
+ };
+type SpotFilters = 
+ record {
+   betSizing: text;
+   boardTexture: text;
+   position: text;
+   stackSize: text;
+   street: text;
+ };
+type SolvedSpot = 
+ record {
+   board: vec Card;
+   description: text;
+   evData: EvData;
+   filters: SpotFilters;
+   id: text;
+   positions: vec text;
+   ranges: RangeMatrix;
+   street: text;
+ };
+type SettingsPublic = 
+ record {
+   animationSpeed: nat;
+   evDetailLevel: text;
+   evDisplay: bool;
+   language: text;
+   showHints: bool;
+   soundEffects: bool;
+ };
+type RangeMatrix = vec ActionFrequency;
+type ParsedHand = 
+ record {
+   actions: vec text;
+   date: text;
+   handNumber: text;
+   result: float64;
+   street: text;
+ };
+type HandHistory = 
+ record {
+   analysis: Analysis;
+   hands: vec ParsedHand;
+   id: text;
+   userId: UserId;
+ };
+type EvData = 
+ record {
+   action: text;
+   expectedValue: float64;
+ };
+type Card = 
+ record {
+   rank: text;
+   suit: text;
+ };
+type Analysis = 
+ record {
+   biggestMistakes: vec text;
+   foldToCbet: float64;
+   pfr: float64;
+   threeBetPct: float64;
+   vpip: float64;
+ };
+type ActionFrequency = 
+ record {
+   bet: float64;
+   call: float64;
+   check: float64;
+   fold: float64;
+   raise: float64;
+ };
+service : {
+  addHandHistory: (hands: vec ParsedHand) -> (HandHistory);
+  createOrUpdateUser: (settings: UserProfileSettings) -> (UserProfilePublic);
+  getSpotById: (id: text) -> (opt SolvedSpot) query;
+  getUserHandHistory: () -> (vec HandHistory) query;
+  getUserProfile: () -> (opt UserProfilePublic) query;
+  listSpots: (filters: opt SpotFilters) -> (vec SolvedSpot) query;
+  searchSpots: (searchQuery: text) -> (vec SolvedSpot) query;
+  seedSampleSpots: () -> ();
+  updateUserStats: (stats: StatsPublic) -> ();
+}
